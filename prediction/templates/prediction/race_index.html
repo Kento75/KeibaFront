@@ -1,0 +1,26 @@
+{% load staticfiles %}
+<html>
+    <head>
+        <title>競馬AI</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="{% static 'css/prediction.css' %}">
+    </head>
+    <body>
+        <div>
+            <h2><a href="/">競馬AI</a></h2>
+        </div>
+        {% if race_lists is not None %}
+        {% for race_list in race_lists %}
+            <div>
+                <h3><a href="">{{ race_list.date }}</a></h3>
+                <p>開催地: {{ race_list.venue }}</p>
+            </div>
+        {% endfor %}
+        {% else %}
+        <div>
+            <p>データ存在しません</p>
+        </div>
+        {% endif %}
+    </body>
+</html>
