@@ -11,3 +11,7 @@ class race_data(models.Model):
     horse_name = models.CharField(max_length=255)
     top3_flg = models.BooleanField()
     top3_ratio = models.FloatField()
+
+    def get_race_count(self):
+        race_counts = self.race_number
+        return race_counts
