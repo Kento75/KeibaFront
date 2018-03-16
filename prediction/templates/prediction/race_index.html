@@ -16,21 +16,19 @@
                     <tr>
                        <th>開催日</th>
                        <th>開催地</th>
-                       <th>レース数</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for race_list in race_lists %}
                       <tr>
                           <td>
-                              {{ race_list.date }}<br>
-                              <small style="color: #888">{{ race_list.race_name }}</small>
+                              {{ race_list.date }}
                           </td>
-                          <td>
-                              {{ race_list.venue }}
-                          </td>
-                          <td>
-                              {{ race_list.get_race_count }}レース
+                          <td><ul>
+　　　　　　　　　　　　　　　　　　　　 {% ifchanged race_list.date race_list.venue %}
+                                      <li>{{ race_list.venue }}</li>
+                                  {% endifchanged %}
+                              </ul>
                           </td>
                       </tr>
                     {% endfor %}
