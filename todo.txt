@@ -1,0 +1,3 @@
+# todo
+
+1.race_index.htmlからリンクを使用してvenue_race_info.htmlに遷移する処理を実装する。

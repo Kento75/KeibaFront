@@ -25,9 +25,7 @@
                               {{ race_list.date }}
                           </td>
                           <td><ul>
-　　　　　　　　　　　　　　　　　　　　 {% ifchanged race_list.date race_list.venue %}
-                                      <li>{{ race_list.venue }}</li>
-                                  {% endifchanged %}
+                                  <li><a href="{% url 'venue_race_info' race_list.venue %}">{{ race_list.venue }}</li>
                               </ul>
                           </td>
                       </tr>
