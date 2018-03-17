@@ -19,16 +19,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for race_list in race_lists %}
+                    {% for date_list in date_lists %}
+                    {% ifchanged date_list.date %}
                       <tr>
                           <td>
-                              {{ race_list.date }}
+                              {{ date_list.date }}
                           </td>
                           <td><ul>
-                                  <li><a href="{% url 'venue_race_info' race_list.venue %}">{{ race_list.venue }}</li>
+                              {% for race_list in race_lists %}
+                                {% if date_list.date == race_list.date %}
+                              <li>
+                                  <a href="{% url 'prediction:venue_race_info' year=date_list.year month=date_list.month day=date_list.day venue_no=race_list.venue_number %}">
+                                      {{ race_list.venue }}
+                                  </a>
+                              </li>
+                                {% endif %}
+                              {% endfor %}
                               </ul>
                           </td>
                       </tr>
+                    {% endifchanged %}
                     {% endfor %}
                 </tbody>
             </table>
