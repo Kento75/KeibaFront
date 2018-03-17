@@ -1,15 +1,15 @@
 from django.shortcuts import render, get_object_or_404
 from django.db.models import Count
-from .models import race_data
+from .models import RaceData
 
 
 # レース一覧(該当週)画面
 def race_index(request):
 
-    date_lists = race_data.objects\
+    date_lists = RaceData.objects\
         .values('date', 'year', 'month', 'day').annotate(Count('date'))
 
-    race_lists = race_data.objects\
+    race_lists = RaceData.objects\
         .values('date', 'venue', 'venue_number', 'year', 'month', 'day').annotate(Count('date'))
 
     context = {
@@ -21,7 +21,7 @@ def race_index(request):
 
 # 開催日・開催地レース情報画面
 def venue_race_info(request, year, month, day, venue_no):
-    obj = get_object_or_404(race_data, year=year, month=month, day=day, venue_number=venue_no)
+    obj = get_object_or_404(RaceData, year=year, month=month, day=day, venue_number=venue_no)
     context = {
         'race_data_lists': obj,
     }

@@ -3,7 +3,7 @@ from django.db import models
 
 # レース予測データ格納用テーブル
 # テーブル名：prediction_race_data
-class race_data(models.Model):
+class RaceData(models.Model):
     date = models.CharField(max_length=10, null=False)  # yyyy/MM/dd形式の文字列型
     year = models.CharField(max_length=4, null=False)
     month = models.CharField(max_length=2, null=False)
@@ -17,3 +17,6 @@ class race_data(models.Model):
     horse_name = models.CharField(max_length=255)
     top3_flg = models.BooleanField()
     top3_ratio = models.FloatField()
+
+    class Meta:
+        db_table = 'prediction_race_data'
