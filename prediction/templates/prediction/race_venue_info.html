@@ -1,44 +1,30 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>競馬AI</title>
-        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-    </head>
-    <body>
-        <div class="container">
-            <ol class="breadcrumb my-4">
-                <li class="breadcrumb-item active">競馬AI</li>
-            </ol>
-            <table class="table">
-                <thead class="thead-inverse">
-                    <tr>
-                       <th>開催日</th>
-                       <th>開催地</th>
-                        <th>レース番号</th>
-                       <th>レース名</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for race_list in race_lists %}
-                      <tr>
-                          <td>
-                              {{ race_list.date }}
-                          </td>
-                          <td>
-                              {{ race_list.venue }}
-                          </td>
-                          <td>
-                              {{ race_list.race_number }}
-                          </td>
-                          <td>
-                              {{ race_list.race_name }}
-                          </td>
-                      </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-    </body>
-</html>
+{% extends "prediction/base.html" %}
+{% block content %}
+  <div class="container">
+    <ol class="breadcrumb my-4">
+      <li class="breadcrumb-item active">競馬AI</li>
+    </ol>
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>レース番号</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for race_data_list in race_data_lists %}
+          <tr>
+            <td>
+              <ul>
+                <li>
+                  <a href="{% url 'prediction:venue_race_info' year=date_list.year month=date_list.month day=date_list.day venue_no=race_list.venue_number %}">
+                  {{ race_list.race_number }}
+                  </a>
+                </li>
+              </ul>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

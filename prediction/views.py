@@ -21,8 +21,16 @@ def race_index(request):
 
 # 開催日・開催地レース情報画面
 def venue_race_info(request, year, month, day, venue_no):
-    obj = get_object_or_404(RaceData, year=year, month=month, day=day, venue_number=venue_no)
+    obj = get_object_or_404(RaceData.objects
+                            .defer('frame_number', 'horse_number', 'horse_name', 'top3_flg', 'top3_ratio')
+                            .annotate(Count('race_number')).order_by('race_number'),
+                            year=year, month=month, day=day, venue_number=venue_no)
     context = {
         'race_data_lists': obj,
     }
     return render(request, 'prediction/venue_race_info.html', context)
+
+
+def show_select_sql(queryset):
+    compiler = queryset.query.get_compiler(using=queryset.db)
+    return compiler.as_sql()
