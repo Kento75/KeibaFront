@@ -32,6 +32,17 @@ def venue_race_info(request, year, month, day, venue_no):
     return render(request, 'prediction/venue_race_info.html', context)
 
 
+# レース詳細情報画面
+def venue_race_info(request, year, month, day, venue_no, race_no):
+    obj = get_list_or_404(RaceData.objects.all().order_by('horse_number'),
+                          year=year, month=month, day=day, venue_number=venue_no, race_number=race_no)
+    context = {
+        'race_detail_lists': obj,
+    }
+    return render(request, 'prediction/race_detail.html', context)
+
+
+# SQL確認用
 def show_select_sql(queryset):
     compiler = queryset.query.get_compiler(using=queryset.db)
     return compiler.as_sql()

@@ -1,0 +1,30 @@
+{% extends "prediction/base.html" %}
+{% block content %}
+  <div class="container">
+    <ol class="breadcrumb my-4">
+      <li class="breadcrumb-item active">競馬AI</li>
+    </ol>
+    <table class="table">
+      <thead class="thead-inverse">
+        <tr>
+          <th>枠番</th>
+          <th>馬番</th>
+          <th>馬名</th>
+          <th>TOP3フラグ</th>
+          <th>予測値</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for race_detail_list in race_detail_lists %}
+          <tr>
+            <td>{{ race_detail_list.frame_number }}</td>
+            <td>{{ race_detail_list.horse_number }}</td>
+            <td>{{ race_detail_list.horse_name }}</td>
+            <td>{{ race_detail_list.top3_flg }}</td>
+            <td>{{ race_detail_list.top3_ratio }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

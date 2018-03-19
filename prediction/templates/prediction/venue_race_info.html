@@ -16,7 +16,9 @@
             <td>
               <ul>
                 <li>
-                  {{ race_data_list.race_number }}：{{ race_data_list.race_name }}
+                  <a href="{% url 'prediction:race_detail' year=race_data_list.year month=race_data_list.month day=race_data_list.day venue_no=race_data_list.venue_number race_no=race_data_list.race_number %}">
+                    {{ race_data_list.race_number }}：{{ race_data_list.race_name }}
+                  </a>
                 </li>
               </ul>
             </td>
