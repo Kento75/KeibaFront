@@ -33,7 +33,7 @@ def venue_race_info(request, year, month, day, venue_no):
 
 
 # レース詳細情報画面
-def venue_race_info(request, year, month, day, venue_no, race_no):
+def race_detail(request, year, month, day, venue_no, race_no):
     obj = get_list_or_404(RaceData.objects.all().order_by('horse_number'),
                           year=year, month=month, day=day, venue_number=venue_no, race_number=race_no)
     context = {

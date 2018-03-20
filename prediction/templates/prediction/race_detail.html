@@ -1,4 +1,5 @@
 {% extends "prediction/base.html" %}
+{% load math %}
 {% block content %}
   <div class="container">
     <ol class="breadcrumb my-4">
@@ -21,7 +22,7 @@
             <td>{{ race_detail_list.horse_number }}</td>
             <td>{{ race_detail_list.horse_name }}</td>
             <td>{{ race_detail_list.top3_flg }}</td>
-            <td>{{ race_detail_list.top3_ratio }}</td>
+            <td>{{ race_detail_list.top3_ratio|100_minutes_rate }}％</td>
           </tr>
         {% endfor %}
       </tbody>
