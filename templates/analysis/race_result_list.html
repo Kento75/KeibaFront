@@ -1,0 +1,31 @@
+{% extends "prediction/base.html" %}
+{% load filter %}
+{% block content %}
+  <div class="container">
+
+    <table class="table table-striped">
+      <thead>
+         <tr>
+            <th>日付</th>
+            <th>馬名</th>
+            <th>タイム</th>
+            <th>人気</th>
+            <th>着順</th>
+         </tr>
+      </thead>
+      <tbody>
+        {% if object_list %}
+          {% for race_result in object_list %}
+            <tr>
+              <td>{{ race_result.date }}</td>
+              <td>{{ race_result.horse_name }}</td>
+              <td>{{ race_result.time_g }}</td>
+              <td>{{ race_result.odds_order }}</td>
+              <td>{{ race_result.order_of_finish }}</td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+{% endblock content %}

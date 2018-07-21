@@ -20,6 +20,7 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('prediction.urls'), name='prediction'),
+    path('analysis/', include('analysis.urls'), name='analysis'),
 ]
 
 if settings.DEBUG:
